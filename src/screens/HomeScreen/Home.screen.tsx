@@ -29,8 +29,6 @@ const HomeScreen = (props: NativeStackScreenProps<RootStackParamsList, 'HomeScre
         .finally(() => setLoading(false))
     }
 
-    // useEffect()
-
     return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
             {/* {userProfile?.photoLink && <Image ={userProfile?.photoLink} />} */}
