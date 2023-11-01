@@ -15,4 +15,8 @@ export default class SafeStorage {
     static async remove(key: string) {
         return await AsyncStorage.removeItem(key)
     }
+
+    static async removeMany(keys: string[]) {
+        return await Promise.all(keys.map(key => AsyncStorage.removeItem(key)))
+    }
 }
