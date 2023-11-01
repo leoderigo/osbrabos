@@ -1,7 +1,7 @@
 import { createSlice, configureStore, PayloadAction } from '@reduxjs/toolkit'
 import { UserProfile } from '../types/authStore/UserProfile'
 
-type AuthState = {
+export type AuthState = {
     userProfile: UserProfile | null
     token: string | null
 }
@@ -16,14 +16,17 @@ const authSlicer = createSlice({
         setUserProfile: (state, action: PayloadAction<UserProfile>) => {
             const { payload } = action
             state.userProfile = payload
+            return state
         },
         clearUserData: (state) => {
             state.token = null
             state.userProfile = null
+            return state
         },
         setAuthToken: (state, action: PayloadAction<string>) => {
             const { payload } = action
             state.token = payload
+            return state
         }
     }
 })
@@ -36,4 +39,6 @@ const authStore = configureStore({
 
 export default authStore
 
-export const authDispatch = authStore.dispatch
+// export type AuthState = ReturnType<typeof authStore.getState>
+
+export type AuthDispatch = typeof authStore.dispatch

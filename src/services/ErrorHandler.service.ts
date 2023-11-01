@@ -13,4 +13,6 @@ class ErrorHandler {
     }
 }
 
-export default new ErrorHandler()
+const instance = new ErrorHandler()
+
+export default instance
