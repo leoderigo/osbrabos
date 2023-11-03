@@ -42,7 +42,7 @@ const SplashScreen = (props: NativeStackScreenProps<RootStackParamsList, 'Splash
 
         authDispatch(setUserProfile(userProfile))
         // setAuthToken(token)
-        navigation.navigate('HomeScreen')
+        navigation.navigate('HomeNavigator')
     }
 
     function redirectToLogin(err?: any) {

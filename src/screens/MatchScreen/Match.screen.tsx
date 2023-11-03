@@ -1,16 +1,16 @@
-import { NativeStackScreenProps } from '@react-navigation/native-stack'
-import React, { useEffect, useState } from 'react'
-import { Image, Text, Touchable, TouchableOpacity, View } from 'react-native'
+import { NativeStackNavigationProp, NativeStackScreenProps } from '@react-navigation/native-stack'
+import React, { useState } from 'react'
+import { Text, TouchableOpacity, View } from 'react-native'
+import { GoogleSignin } from '@react-native-google-signin/google-signin'
+import { BottomTabScreenProps } from '@react-navigation/bottom-tabs'
 
-import { RootStackParamsList } from '../../navigation'
-import { useSelector } from 'react-redux'
+import { HomeTabParamsList, RootStackParamsList } from '../../navigation'
 import { useAuthSelector } from '../../hooks/useAuthSelector'
 import { clearUserData } from '../../store/auth.store'
 import SafeStorage from '../../services/SafeStorage.service'
-import { GoogleSignin } from '@react-native-google-signin/google-signin'
 
 
-const HomeScreen = (props: NativeStackScreenProps<RootStackParamsList, 'HomeScreen'>) => {
+const MatchScreen = (props: BottomTabScreenProps<HomeTabParamsList, 'MatchScreen'>) => {
     const { navigation } = props
     const userProfile = useAuthSelector(state => state.userProfile)
     const [loading, setLoading] = useState(false)
@@ -24,7 +24,7 @@ const HomeScreen = (props: NativeStackScreenProps<RootStackParamsList, 'HomeScre
                 'authToken',
                 'userProfile'
             ])
-            navigation.navigate('LoginScreen')
+            navigation.getParent<NativeStackNavigationProp<RootStackParamsList>>().navigate('LoginScreen')
         })
         .finally(() => setLoading(false))
     }
@@ -46,4 +46,4 @@ const HomeScreen = (props: NativeStackScreenProps<RootStackParamsList, 'HomeScre
     )
 }
 
-export default HomeScreen
+export default MatchScreen

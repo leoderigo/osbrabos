@@ -13,7 +13,7 @@ const LoginScreen = (props: NativeStackScreenProps<RootStackParamsList, 'LoginSc
     const { navigation } = props
 
     const onLoginSuccess = () => {
-        navigation.navigate('HomeScreen')
+        navigation.navigate('HomeNavigator')
     }
 
     return (
