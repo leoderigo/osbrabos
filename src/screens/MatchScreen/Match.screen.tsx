@@ -1,13 +1,16 @@
 import { NativeStackNavigationProp, NativeStackScreenProps } from '@react-navigation/native-stack'
 import React, { useState } from 'react'
-import { Text, TouchableOpacity, View } from 'react-native'
+import { Dimensions, Text, View } from 'react-native'
 import { GoogleSignin } from '@react-native-google-signin/google-signin'
 import { BottomTabScreenProps } from '@react-navigation/bottom-tabs'
+import IonIcon from 'react-native-vector-icons/Ionicons'
 
 import { HomeTabParamsList, RootStackParamsList } from '../../navigation'
 import { useAuthSelector } from '../../hooks/useAuthSelector'
 import { clearUserData } from '../../store/auth.store'
 import SafeStorage from '../../services/SafeStorage.service'
+import Colors from '../../constants/Colors'
+import EmptyRoomList from './EmptyRoomList'
 
 
 const MatchScreen = (props: BottomTabScreenProps<HomeTabParamsList, 'MatchScreen'>) => {
@@ -31,16 +34,16 @@ const MatchScreen = (props: BottomTabScreenProps<HomeTabParamsList, 'MatchScreen
 
     return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            {/* {userProfile?.photoLink && <Image ={userProfile?.photoLink} />} */}
-            <Text style={{ padding: 20 }}>Nome: {userProfile?.name ?? 'Carregando'}</Text>
-            <View style={{ flexDirection: 'row', paddingHorizontal: 40 }}>
-                <TouchableOpacity
-                    style={{ flex: 1, backgroundColor: 'yellow', padding: 10, borderRadius: 35, alignItems: 'center', justifyContent: 'center', elevation: 3 }}
-                    onPress={onPressLogout}
-                    disabled={loading}
-                >
-                    <Text>{loading ? 'Saindo...' : 'SAIR'}</Text>
-                </TouchableOpacity>
+            <View style={{ flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'flex-end' }}>
+                <View style={{ flex: 1 }} />
+                <View style={{ padding: 20 }}>
+                    <IonIcon name='notifications-outline' size={25} color={Colors.black} />
+                </View>
+            </View>
+
+            {/* Content */}
+            <View style={{ flex: 1 }}>
+                <EmptyRoomList/>
             </View>
         </View>
     )
